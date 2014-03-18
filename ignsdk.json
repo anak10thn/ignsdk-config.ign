@@ -1,0 +1,21 @@
+{
+  "config" : { 
+		"debug" : false,
+		"websecurity" : true,
+		"name" : "IGNSDK Proxy Settings"
+  },
+  "window" : { 
+		"transparent" : false, 
+		"noframe" : false, 
+		"fullscreen" : false,
+		"maximize" : false,
+		"width" : 300,
+		"height" : 320
+	},
+  "button" : [
+		"back",
+		"forward",
+		"stop",
+		"reload"
+	]
+}

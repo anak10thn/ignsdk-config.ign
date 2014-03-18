@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="qrc:///js/jquery.js"></script>
+<script type="text/javascript">
+var fs = ign.filesystem();
+var check_proxy = fs.exists("/etc/ignsdk-proxy.conf");
+var file = "/etc/ignsdk-proxy.conf";
+
+$(function(){
+	var sel = $('[type=text],[type=number],[type=password],[type=submit]');
+	
+	if(check_proxy){
+			$('#disable').prop({'checked':false});
+			sel.prop({disabled: false});
+			var read = fs.fileRead(file).split(':');
+			$('#host').val(read[0]);
+			$('#port').val(read[1]);
+			$('#user').val(read[2]);
+			$('#pass').val(read[3]);
+		}
+		else {
+			$('#disable').prop({'checked':true});
+			sel.prop({disabled: true});
+		}
+		
+	$('#disable').click(function(){
+		if($(this).prop('checked')){
+			if(fs.fileRemove(file)){
+				sel.prop({disabled: true});
+				$('#host').val('');
+				$('#port').val('');
+				$('#user').val('');
+				$('#pass').val('');
+			}
+			else {
+				alert('error!');
+			}
+		}
+		else {
+			sel.prop({
+			  disabled: false
+			});
+		}
+	});
+	
+	$('form').submit(function(){
+		var host = $('#host').val();
+		var port = $('#port').val();
+		var user = $('#user').val();
+		var pass = $('#pass').val();
+		if(host != ""){
+			if(port != ""){
+				if(fs.fileWrite(file,host+":"+port+":"+user+":"+pass)){
+					alert("Success!");
+				}
+				else{
+					alert("Error!");
+				}
+			}
+			else{
+				alert('port must be entry!');
+			}
+		}
+		else{
+			alert('hostname must be entry!');
+		}
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<h3><center>IGNSDK Proxy Settings</center></h3>
+<form>
+<input type="checkbox" id="disable" style="margin-bottom:5px"> Disable Proxy<br>
+<input type="text" placeholder="Hostname" id="host" style="width:100%;height:30px;margin-bottom:10px;margin-top:10px">
+<input type="number" placeholder="Port" id="port" style="width:100%;height:30px;margin-bottom:10px;">
+<input type="text" placeholder="Username (optional)" id="user" style="width:100%;height:30px;margin-bottom:10px;">
+<input type="password" placeholder="Password (optional)" id="pass" style="width:100%;height:30px;margin-bottom:10px;">
+<input type="submit" id="submit" value="Set Proxy" style="width:100%;height:30px;margin-bottom:10px;">
+</form>
+</body>
+</html>
