@@ -1,8 +1,8 @@
-%define name ignsdk-proxy.ign
-%define release 1
-%define version 1.0
-%define license MIT
-%define url http://ignsdk.web.id
+%define name <name>
+%define release <release>
+%define version <version>
+%define license <license>
+%define url http://<url>
 %define group System Environment/Base
 
 Summary:IGOS Nusantara SDK Application
@@ -13,18 +13,19 @@ License:%{license}
 Group:%{group}
 URL:%{url}
 Source0:%{name}.tar.gz
+Source1:%{name}.txt
 BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:ignsdk
 BuildArch:noarch
 %description
 %{description}
-Settings Apps For IGNSDK
+<desc>
 
 %prep
 %setup -q -n %{name}
 
 %install
-%include %{buildsubdir}/rpm/install_list.txt
+%include %{SOURCE1}
 
 %clean
 rm -rf $RPM_BUILD_ROOT

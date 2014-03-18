@@ -1,0 +1,11 @@
+install -d -m 755 $RPM_BUILD_ROOT/opt/ignsdk/%{name}
+install -d -m 755 $RPM_BUILD_ROOT/opt/ignsdk/%{name}/icons
+install -d -m 755 $RPM_BUILD_ROOT/opt/ignsdk/%{name}/bin
+install -d -m 755 $RPM_BUILD_ROOT/opt/ignsdk/%{name}/rpm
+install -d -m 755 $RPM_BUILD_ROOT/usr/share/applications
+cp -rf 'app.spec' $RPM_BUILD_ROOT/opt/ignsdk/%{name}/
+cp -rf icons/* $RPM_BUILD_ROOT/opt/ignsdk/%{name}/icons/
+cp -rf 'ignsdk.json' $RPM_BUILD_ROOT/opt/ignsdk/%{name}/
+cp -rf 'index.html' $RPM_BUILD_ROOT/opt/ignsdk/%{name}/
+install -m 644 menu/ignsdk-*.desktop $RPM_BUILD_ROOT/usr/share/applications/
+cp -rf rpm/* $RPM_BUILD_ROOT/opt/ignsdk/%{name}/rpm/

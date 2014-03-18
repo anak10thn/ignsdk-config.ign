@@ -1,8 +1,8 @@
-%define name <name>
-%define release <release>
-%define version <version>
-%define license <license>
-%define url http://<url>
+%define name ignsdk-config.ign
+%define release 1
+%define version 1.0
+%define license MIT
+%define url http://ignsdk.web.id
 %define group System Environment/Base
 
 Summary:IGOS Nusantara SDK Application
@@ -19,7 +19,7 @@ Requires:ignsdk
 BuildArch:noarch
 %description
 %{description}
-<desc>
+IGNSDK Configuration tools
 
 %prep
 %setup -q -n %{name}

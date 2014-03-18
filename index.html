@@ -26,15 +26,12 @@ $(function(){
 		
 	$('#disable').click(function(){
 		if($(this).prop('checked')){
+			sel.prop({disabled: true});
 			if(fs.fileRemove(file)){
-				sel.prop({disabled: true});
 				$('#host').val('');
 				$('#port').val('');
 				$('#user').val('');
 				$('#pass').val('');
-			}
-			else {
-				alert('error!');
 			}
 		}
 		else {
@@ -70,13 +67,17 @@ $(function(){
 });
 </script>
 </head>
-<body>
+<body style="background:transparent">
 <h3><center>IGNSDK Proxy Settings</center></h3>
 <form>
 <input type="checkbox" id="disable" style="margin-bottom:5px"> Disable Proxy<br>
-<input type="text" placeholder="Hostname" id="host" style="width:100%;height:30px;margin-bottom:10px;margin-top:10px">
+<span style="margin-top:10px">Hostname :</span>
+<input type="text" placeholder="Hostname" id="host" style="width:100%;height:30px;margin-bottom:10px;">
+<span>Port :</span>
 <input type="number" placeholder="Port" id="port" style="width:100%;height:30px;margin-bottom:10px;">
+<span>Username :</span>
 <input type="text" placeholder="Username (optional)" id="user" style="width:100%;height:30px;margin-bottom:10px;">
+<span>Password :</span>
 <input type="password" placeholder="Password (optional)" id="pass" style="width:100%;height:30px;margin-bottom:10px;">
 <input type="submit" id="submit" value="Set Proxy" style="width:100%;height:30px;margin-bottom:10px;">
 </form>
